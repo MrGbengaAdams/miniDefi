@@ -4,7 +4,6 @@ pragma solidity ^0.8.20;
 import {ERC20} from "lib/openzeppelin-contracts/contracts/token/ERC20/ERC20.sol";
 import {Ownable} from "lib/openzeppelin-contracts/contracts/access/Ownable.sol";
 
-
 contract TokenVault {
     mapping(address => uint256) public stakes;
     mapping(address => uint256) public rewards;
@@ -16,7 +15,7 @@ contract TokenVault {
 
     error TokenVault__InsufficientStakes();
 
-    constructor(address _tokenAddress)  {
+    constructor(address _tokenAddress) {
         MiniToken = ERC20(_tokenAddress);
     }
 
@@ -65,8 +64,8 @@ contract TokenVault {
         if (rewardsEarned == 0) {
             revert TokenVault__InsufficientStakes();
         }
-        MiniToken.transfer(msg.sender, totalEarned );
-        rewards[msg.sender] =0;
+        MiniToken.transfer(msg.sender, totalEarned);
+        rewards[msg.sender] = 0;
         lastUpdate[msg.sender] = block.number;
     }
 }
